@@ -1,0 +1,18 @@
+{ 
+	"success":$!success,
+        "Data": [
+		{
+                        "id" : "$!game.getId()",
+                        "leagueId" : "$!game.getLeagueId()",
+                        "matchDate" : "$!game.getMatchDate()",
+                        "brokerId" : "$!game.getBrokerId()",
+                        "team1Id" : "$!game.getTeam1Id()",
+                        "team2Id" : "$!game.getTeam2Id()",
+			"team1" : "$!game.getTeam1Name()",
+			"team2" : "$!game.getTeam2Name()",
+                        "team1Players" : "$!game.getTeam1Players()",
+                        "team2Players" : "$!game.getTeam2Players()"
+                }	
+		
+	]
+}

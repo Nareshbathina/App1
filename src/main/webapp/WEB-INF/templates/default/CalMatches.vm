@@ -1,0 +1,20 @@
+[
+        #foreach($!match in $!matches) {
+            "id": "$!match.getId()",
+            "calendarId" : "$!match.getLeagueId()",
+            "startDate": "$!match.getStartDate()",
+            "endDate": "$!match.getEndDate()",
+            "title": "$!match.getTitle()",
+             #if($!teamInfo)
+                "team1PlayersInfo": "$!match.getTeam1PlayersInfo()",
+                "team2PlayersInfo": "$!match.getTeam2PlayersInfo()",
+                "b1": "$!match.getB1()",
+            #end "team1Id": "$!match.getTeam1Id()",
+            "team2Id": "$!match.getTeam2Id()"
+
+
+
+        }
+        #if($velocityCount < $!matches.size() - 1), #end
+        #end
+    ]

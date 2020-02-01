@@ -1,0 +1,23 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!player in $!players ){
+                        "id" :  "$!player.getId()",
+			"sunsign" : "$!player.getSunSign()",
+                        "name" : "$!player.getName()",
+                        "sName" : "$!player.getShortName()",
+                        "type" : "$!player.getType()",
+                        "form": "$!player.getForm()",
+                        "capacity" :  "$!player.getLevel()",
+                        "iconName" : "$!player.getIconName()",
+                        "teamId"  : "$!player.getTeamId()",
+                        "description" : "$!player.getDescription()"
+                       
+                          
+		}	
+		#if ($velocityCount < $!players.size() - 1),#end
+		#end
+	]
+}

@@ -1,0 +1,17 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!player in $!players ){
+                        "id" :  "$!player.getId()",
+                        "playerId" :  "$!player.getPlayerId()",
+			"points" : "$!player.getPoints()",
+                        "credits" : "$!player.getCredits()",
+                        "playerType" : "$!player.getType()",
+                        "planetName": "$!player.planetName"  
+		}	
+		#if ($velocityCount < $!players.size() - 1),#end
+		#end
+	]
+}

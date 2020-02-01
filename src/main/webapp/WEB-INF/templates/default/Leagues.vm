@@ -1,0 +1,16 @@
+{ 
+	"success":"$!success",
+        "message":"$!message",
+	"totalCount":"$!totalCount",
+	"Data": [
+		#foreach( $!league in $!leagues ){
+                        "id" : "$!league.getId()",
+                        "iconName" : "$!league.getIconName()",
+			"name" : "$!league.getName()",
+			"code" : "$!league.getCode()",
+                        "title" : "$!league.getCode()"
+		}	
+		#if ($foreach.index < $!leagues.size() - 1),#end
+		#end
+	]
+}

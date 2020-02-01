@@ -1,0 +1,22 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!game in $!games ){
+                        "id" : "$!game.getId()",
+                        "leagueId" : "$!game.getLeagueId()",
+                        "brokerId" : "$!game.getBrokerId()",
+			"team1" : "$!game.getTeam1Name()",
+			"team2" : "$!game.getTeam2Name()",
+                        "team1Id" : "$!game.getTeam1Id()",
+			"team2Id" : "$!game.getTeam2Id()",
+                        "matchDate" : "$!game.getMatchDate()",
+                        "players" : "$!game.getPlayers()",
+                         "uniqueMembers" : "$!game.getUniqueMembers()", 
+                        "teamsGenerated" : $!game.isTeamsGenerated()
+		}	
+		#if ($velocityCount < $!games.size() - 1),#end
+		#end
+	]
+}

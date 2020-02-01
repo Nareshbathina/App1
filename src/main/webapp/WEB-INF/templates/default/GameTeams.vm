@@ -1,0 +1,35 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!gameTeam in $!teams ){
+                        "id" : "$!gameTeam.getId()",
+                        "gameId" : "$!gameTeam.getGameId()",
+                         "captain": "$!gameTeam.getCaptainName()",
+                         "viceCaptain": "$!gameTeam.getViceCaptainName()",
+                          "credits" : "$!gameTeam.getCredits()",
+                         "points" : "$!gameTeam.getPoints()",
+                        "user" : "$!gameTeam.getUser()",
+                        "rank" : "$!gameTeam.getRank()",
+                        "amount" : "$!gameTeam.getAmount()",
+			"players" : "$!gameTeam.getPlayers()",
+                         "playersList" : [
+                            #foreach($!player in $!gameTeam.getPlayersLst() ){
+                             "id" : "$!player.getId()",
+                             "credits" : "$!player.getPlayerCredits()",
+                             "name" : "$!player.getFullName()",
+                                 "horoscopeId" : $!player.getHoroscopeId(),
+                             "points" : "$!player.getPlayerPoints()",
+                             "type" : "$!player.getPlayerType()",
+                             "captain" : $!player.isCaptain(),
+                             "viceCaptain" : $!player.isViceCaptain(),
+                            },
+			#end
+                        ],   
+                        
+		}	
+		#if ($velocityCount < $!teams.size() - 1),#end
+		#end
+	]
+}

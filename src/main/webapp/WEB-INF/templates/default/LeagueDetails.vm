@@ -1,0 +1,34 @@
+{ 
+	"success":$!success,
+        "Data": [
+		{
+                        "id" : "$!league.getId()",
+                        "iconName" : "$!league.getIconName()",
+			"name" : "$!league.getName()",
+			"code" : "$!league.getCode()",
+                         "teams" : [    
+                                #foreach($!team in $!league.getTeams()){
+                                    "id" : "$!team.getId()",
+                                    "leagueId" : "$!team.getLeagueId()",
+                                    "iconName" : "$!team.getIconName()",
+                                    "name" : "$!team.getName()",
+                                    "code" : "$!team.getCode()",
+                                    "players" : [
+                                         #foreach( $!player in $!team.getPlayersList()){
+                                                "id" :  "$!player.getId()",
+                                                "name" : "$!player.getFullName()",
+                                                "shortName" : "$!player.getName()",
+                                                "iconName" : "$!player.getIconName()",
+                                                "credits" : "$!player.getPlayerCredits()",
+                                                "type" : "$!player.getPlayerType()",
+                                                "description" : "$!player.getDescription()",
+                                         },
+                                        #end	
+                                    ]
+                            },
+                            #end	  
+                        ]
+		}	
+		
+	]
+}

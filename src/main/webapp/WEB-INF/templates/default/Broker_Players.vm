@@ -1,0 +1,30 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!player in $!players ){
+                        "id" :  "$!player.getId()",
+			"name" : "$!player.getFullName()",
+                        "iconName" : "$!player.getIconName()",
+                        "teamId" : "$!player.getTeamId()",
+                        "horoscopeId" : "$!player.getHoroscopeId()",
+			"description" : "$!player.getDescription()",
+                        "points" : "$!player.getPlayerPoints()",
+                        "credits" : "$!player.getPlayerCredits()",
+                        "playerType" : "$!player.getPlayerType()",
+                        "planetName": "$!player.planetName",
+                        "source1" : "$!player.sourceName1",
+                        "description1" :"$!player.desc1",
+                        "result1" :"$!player.result1",
+                        "source2" : "$!player.sourceName2",
+                        "description2" :"$!player.desc2",
+                        "result2" :"$!player.result2",   
+                        "source3" : "$!player.sourceName3",
+                        "description3" :"$!player.desc3",
+                        "result3" :"$!player.result3",                  
+		}	
+		#if ($velocityCount < $!players.size() - 1),#end
+		#end
+	]
+}

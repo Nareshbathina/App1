@@ -1,0 +1,16 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!team in $!teams ){
+                        "id" : "$!team.getId()",
+                        "leagueId" : "$!team.getLeagueId()",
+                        "iconName" : "$!team.getIconName()",
+			"name" : "$!team.getName()",
+			"code" : "$!team.getCode()"
+		}	
+		#if ($velocityCount < $!teams.size() - 1),#end
+		#end
+	]
+}

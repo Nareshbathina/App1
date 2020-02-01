@@ -1,0 +1,22 @@
+
+ [
+        #foreach( $!league in $!leagues ){
+                "id" : "$!league.getId()",
+                "iconName" : "$!league.getIconName()",
+                "name" : "$!league.getName()",
+                "code" : "$!league.getCode()",
+                "title" : "$!league.getCode()",
+                "eventStore": {
+                    "proxy": {
+                        "type": "ajax",
+                        "url": "getAllMatchesForLeague.htm",
+                        "params":{
+                            "leagueId": "$!league.getId()"
+                        }
+
+                    }
+                }
+        }	
+        #if ($foreach.index < $!leagues.size() - 1),#end
+        #end
+]
