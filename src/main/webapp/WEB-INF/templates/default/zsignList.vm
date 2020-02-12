@@ -1,0 +1,26 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!zSign in $!zSignData ){
+                        "id" : "$!zSign.id",
+                        "name" : "$!zSign.displayName",
+                         "points" : "$!zSign.points",
+                         "aries": "$!zSign.getPointsArry(0)",
+                        "tarus": "$!zSign.getPointsArry(1)",
+                        "gemini": "$!zSign.getPointsArry(2)",
+                        "cancer": "$!zSign.getPointsArry(3)",
+                        "leo": "$!zSign.getPointsArry(4)",
+                        "virgo": "$!zSign.getPointsArry(5)",
+                        "libra": "$!zSign.getPointsArry(6)",
+                        "scorpio": "$!zSign.getPointsArry(7)",
+                        "sagittarius": "$!zSign.getPointsArry(8)",
+                        "capricorn": "$!zSign.getPointsArry(9)",
+                        "aquarius": "$!zSign.getPointsArry(10)",
+                        "pisces": "$!zSign.getPointsArry(11)"
+                  }      
+		#if ($velocityCount < $!zSignData .size() - 1),#end
+		#end
+	]
+}

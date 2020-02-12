@@ -5,20 +5,25 @@
  */
 Ext.define("MyApp.view.matchDetails.MatchDetailsPanel", {
     extend: 'Ext.panel.Panel',
-    requires: [],
+    requires: ['MyApp.view.matchDetails.MatchDetailsController','MyApp.view.matchDetails.AnalysisPanel'],
     xtype: 'matchDetailsPanel',
-    alias: 'widget.matchDetailsPanel',
+    alias: 'widget.matchDetailsController',
+    headerPosition : 'left',
     title : 'Match Details',
     layout: 'fit',
     autoHeight: true,
     height: 800,
     autoScroll: true,
-    //controller: 'astroController',
+    controller: 'matchDetailsController',
     items: [{
             xtype : 'tabpanel',
+            itemId : 'mainTabPanel',
+            defaults : {
+                xtype : 'panel'
+            },
             items : [{
-                    xtype : 'panel',
-                    title : 'Match Details'
+                    title : 'Match Details',
+                    xtype : 'analysisPanel'
             }]
     }
     ]

@@ -105,3 +105,18 @@ $ui-header-noborder-adjust: false
     background-color: #eee;
     height: auto;
 }
+.playerInfo{
+    position: absolute;
+    margin: -85px 0px 0px 100px;
+}
+.playerName{
+    margin: 0px 5px 10px 4px;
+    font-size: 25px;
+    color: darkgreen;
+}
+.playerType{
+        margin: 2px 10px 4px 6px;
+    font-size: 16px;
+    color: maroon;
+    
+}

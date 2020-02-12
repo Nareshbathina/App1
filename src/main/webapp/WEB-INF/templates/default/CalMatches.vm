@@ -4,6 +4,7 @@
             "calendarId" : "$!match.getLeagueId()",
             "startDate": "$!match.getStartDate()",
             "endDate": "$!match.getEndDate()",
+             "description": "$!match.getDescription()",
             "title": "$!match.getTitle()",
              #if($!teamInfo)
                 "team1PlayersInfo": "$!match.getTeam1PlayersInfo()",
