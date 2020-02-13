@@ -83,13 +83,13 @@ public class HoroscopeController {
     }
     
     @RequestMapping(value = "getZsignsData.htm", method = RequestMethod.GET)
-    public ModelAndView getZsignsData() {
+    public ModelAndView getZsignsData(@RequestParam int id) {
         HashMap<String, Object> model = new HashMap<String, Object>();
         VelocityContext data = new VelocityContext();
         try {
             List<ZsignModel> zSignData = null;
             
-            zSignData = this.horoscopeService.getZsignsData();
+            zSignData = this.horoscopeService.getZsignsData(id);
             data.put("zSignData", zSignData);
             data.put("totalCount", zSignData.size());
             data.put("success", true);

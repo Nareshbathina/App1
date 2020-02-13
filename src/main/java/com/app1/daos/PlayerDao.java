@@ -114,9 +114,9 @@ public class PlayerDao {
             player.setShortName(rs.getString("ShortName"));
             player.setType(rs.getString("PlayerType"));
             player.setForm(rs.getString("Form"));
-             player.setSunSign(rs.getString("SunSign"));
-               player.setMoonSign(rs.getString("MoonSign"));
-               player.setLevel(rs.getString("PlayerLevel"));
+            player.setSunSign(rs.getString("SunSign"));
+            player.setMoonSign(rs.getString("MoonSign"));
+            player.setLevel(rs.getString("PlayerLevel"));
             return player;
         }
     }

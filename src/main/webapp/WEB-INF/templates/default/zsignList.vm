@@ -4,9 +4,9 @@
 	"totalCount":$!totalCount,
 	"Data": [
 		#foreach( $!zSign in $!zSignData ){
-                        "id" : "$!zSign.id",
-                        "name" : "$!zSign.displayName",
-                         "points" : "$!zSign.points",
+                        "id" : "$!zSign.getId()",
+                        "name" : "$!zSign.getDisplayName()",
+                         "points" : "$!zSign.getPoints()",
                          "aries": "$!zSign.getPointsArry(0)",
                         "tarus": "$!zSign.getPointsArry(1)",
                         "gemini": "$!zSign.getPointsArry(2)",
@@ -20,7 +20,7 @@
                         "aquarius": "$!zSign.getPointsArry(10)",
                         "pisces": "$!zSign.getPointsArry(11)"
                   }      
-		#if ($velocityCount < $!zSignData .size() - 1),#end
+		#if ($velocityCount < $!zSignData.size() - 1),#end
 		#end
 	]
 }

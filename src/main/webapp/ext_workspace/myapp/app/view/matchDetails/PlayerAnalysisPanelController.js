@@ -44,6 +44,22 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
        
        
         var mainPanel = panel.up('app-main');
+        
+        
+          Ext.Ajax.request({
+                url: 'getZsignsData.htm',
+                params: {'id': record.get('sunsignId')},
+                method: 'GET',
+                success: function (response, options) {
+                    var obj = Ext.util.JSON.decode(response.responseText);
+                      debugger
+                },
+                failure: function (response, options) {
+
+                }
+            });
+        
+        
         var planetDetails = Ext.ComponentQuery.query('#planetDetails')[0];
         var planetInfoGrid = planetDetails.query('grid')[0];
         var planetPoints = planetDetails.query('grid')[1];

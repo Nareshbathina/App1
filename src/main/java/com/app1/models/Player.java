@@ -5,6 +5,8 @@
  */
 package com.app1.models;
 
+import com.app1.enums.Zsign;
+
 /**
  *
  * @author user
@@ -27,7 +29,7 @@ public class Player {
     String b2;
     String b3;
     String b4;
-    
+
     public String getId() {
         return id;
     }
@@ -69,6 +71,10 @@ public class Player {
     }
 
     public String getSunSign() {
+        if (sunSign != null) {
+            Zsign sign = Zsign.getById(Integer.parseInt(sunSign));
+            return sign.getDisplay();
+        }
         return sunSign;
     }
 
@@ -123,7 +129,7 @@ public class Player {
     public void setCountry(String country) {
         this.country = country;
     }
-    
+
     public String getB1() {
         return b1;
     }
@@ -154,5 +160,9 @@ public class Player {
 
     public void setB4(String b4) {
         this.b4 = b4;
+    }
+    
+    public String getSunSignId() {
+        return sunSign;
     }
 }

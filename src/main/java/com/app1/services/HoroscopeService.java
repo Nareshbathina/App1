@@ -38,25 +38,28 @@ public class HoroscopeService {
         return this.horoscopeDao.getHoroscopeByDate(date);
     }
 
-    public List<ZsignModel> getZsignsData() {
+    public List<ZsignModel> getZsignsData(int id) {
         List<ZsignModel> list = new ArrayList<ZsignModel>();
         Zsign[] signs = Zsign.values();
 
         for (int i = 0; i < signs.length; i++) {
             Zsign sign = signs[i];
-            ZsignModel signData = new ZsignModel();
-            signData.setId(sign.getCode());
-            signData.setName(sign.getName());
-            signData.setDisplayName(sign.getDisplay());
-            Graha g = Graha.getById(sign.getGrahaId());
-            GrahaModel grahaData = new GrahaModel();
-            grahaData.setId(g.getId());
-            grahaData.setName(g.getName());
-            grahaData.settName(g.getTname());
-            grahaData.setFriends(getGrahaData(g.getFriends()));
-            grahaData.setEqual(getGrahaData(g.getEqual()));
-            grahaData.setEnemies(getGrahaData(g.getEnemies()));
-            list.add(signData);
+            if (id == -1 || id == sign.getCode()) {
+                ZsignModel signData = new ZsignModel();
+                signData.setId(sign.getCode());
+                signData.setName(sign.getName());
+                signData.setDisplayName(sign.getDisplay());
+                signData.setPoints(sign.getPoints());
+                Graha g = Graha.getById(sign.getGrahaId());
+                GrahaModel grahaData = new GrahaModel();
+                grahaData.setId(g.getId());
+                grahaData.setName(g.getName());
+                grahaData.settName(g.getTname());
+                grahaData.setFriends(getGrahaData(g.getFriends()));
+                grahaData.setEqual(getGrahaData(g.getEqual()));
+                grahaData.setEnemies(getGrahaData(g.getEnemies()));
+                list.add(signData);
+            }
         }
         return list;
     }

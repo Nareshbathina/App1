@@ -6,6 +6,7 @@
 		#foreach( $!player in $!players ){
                         "id" :  "$!player.getId()",
 			"sunsign" : "$!player.getSunSign()",
+                        "sunsignId" : "$!player.getSunSignId()",
                         "name" : "$!player.getName()",
                         "sName" : "$!player.getShortName()",
                         "type" : "$!player.getType()",
