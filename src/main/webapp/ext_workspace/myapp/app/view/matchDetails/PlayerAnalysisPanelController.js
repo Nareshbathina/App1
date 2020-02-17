@@ -76,11 +76,12 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 var enimes = data.enimes;
                 var equal = data.equal;
                 var fIds = [], enIds = [], eqIds = [];
+                debugger
                 Ext.each(friends, function (f) {
                     planetMap.each(function (key, value, length) {
                         if (f.id == value.toString()) {
                             f.planetId = value;
-                            fIds.push(value.toString());
+                            fIds.push(key.toString());
                         }
                     });
                 });
@@ -88,7 +89,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                     planetMap.each(function (key, value, length) {
                         if (f.id == value.toString()) {
                             f.planetId = value;
-                            enIds.push(value.toString());
+                            enIds.push(key.toString());
                         }
                     });
                 });
@@ -96,7 +97,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                     planetMap.each(function (key, value, length) {
                         if (f.id == value.toString()) {
                             f.planetId = value;
-                            eqIds.push(value.toString());
+                            eqIds.push(key.toString());
                         }
                     });
                 });
@@ -105,11 +106,11 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 var teamSelector = mainTabPanel.query('#team1PlayerAnalysis')[0];
                 var store = teamSelector.getStore();
                 store.each(function (record) {
-                    if (fIds.indexOf(record.get('sunsignId')) > -1) {
+                    if (fIds.indexOf(record.get('sunsign')) > -1) {
                         friendRecords.push(record.data);
-                    }else if (enIds.indexOf(record.get('sunsignId')) > -1) {
+                    }else if (enIds.indexOf(record.get('sunsign')) > -1) {
                         enemyRecords.push(record.data);
-                    }else if (eqIds.indexOf(record.get('sunsignId')) > -1) {
+                    }else if (eqIds.indexOf(record.get('sunsign')) > -1) {
                         equalRecords.push(record.data);
                     }else if(record.get('sunsignId') == signId){
                         equalRecords.push(record.data);
@@ -120,11 +121,11 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 teamSelector = mainTabPanel.query('#team2PlayerAnalysis')[0];
                 store = teamSelector.getStore();
                 store.each(function (record) {
-                     if (fIds.indexOf(record.get('sunsignId')) > -1) {
+                     if (fIds.indexOf(record.get('sunsign')) > -1) {
                         friendRecords.push(record.data);
-                    }else if (enIds.indexOf(record.get('sunsignId')) > -1) {
+                    }else if (enIds.indexOf(record.get('sunsign')) > -1) {
                         enemyRecords.push(record.data);
-                    }else if (eqIds.indexOf(record.get('sunsignId')) > -1) {
+                    }else if (eqIds.indexOf(record.get('sunsign')) > -1) {
                         equalRecords.push(record.data);
                     }else if(record.get('sunsignId') == signId){
                         equalRecords.push(record.data);
