@@ -7,7 +7,7 @@
 
 Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
     extend: 'Ext.panel.Panel',
-    requires: ['MyApp.store.MatchStore','MyApp.view.matchDetails.PlayerAnalysisPanel'],
+    requires: ['MyApp.store.MatchStore','MyApp.view.matchDetails.PlayerAnalysisPanel','MyApp.view.matchDetails.SignPanel'],
     xtype: 'analysisPanel',
     alias: 'widget.analysisPanel',
     layout: 'column',
@@ -146,36 +146,48 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
             layout: 'column',
             defaults: {
                 columnWidth: .5,
-                xtype: 'panel',
-                height : 200,
+                xtype: 'signPanel',
                 collapsible: true,
+                
                
             },
             columnWidth: .6,
             items: [{
-                    title: 'Aries'
+                    title: 'Aries',
+                    signId : 1
                 }, {
-                    title: 'Tarus'
+                    title: 'Tarus',
+                    signId : 2
                 }, {
-                    title: 'Gemini'
+                    title: 'Gemini',
+                    signId : 3
                 }, {
-                    title: 'Cancer'
+                    title: 'Cancer',
+                    signId : 4
                 }, {
-                    title: 'Leo'
+                    title: 'Leo',
+                    signId : 5
                 }, {
-                    title: 'Virgo'
+                    title: 'Virgo',
+                    signId : 6
                 }, {
-                    title: 'Libra'
+                    title: 'Libra',
+                    signId : 7
                 }, {
-                    title: 'Scorpio'
+                    title: 'Scorpio',
+                    signId : 8
                 }, {
-                    title: 'Sagittarius'
+                    title: 'Sagittarius',
+                    signId : 9
                 }, {
-                    title: 'Capricon'
+                    title: 'Capricon',
+                    signId : 10
                 }, {
-                    title: 'Aquarius'
+                    title: 'Aquarius',
+                    signId : 11
                 }, {
-                    title: 'Pisces'
+                    title: 'Pisces',
+                    signId : 12
                 }]
         }]
 

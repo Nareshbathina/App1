@@ -58,6 +58,7 @@ public class HoroscopeService {
                 grahaData.setFriends(getGrahaData(g.getFriends()));
                 grahaData.setEqual(getGrahaData(g.getEqual()));
                 grahaData.setEnemies(getGrahaData(g.getEnemies()));
+                signData.setGraha(grahaData);
                 list.add(signData);
             }
         }
@@ -68,13 +69,16 @@ public class HoroscopeService {
         List<GrahaModel> list = new ArrayList<GrahaModel>();
         String[] idArray = ids.split(",");
         for (int i = 0; i < idArray.length; i++) {
-            GrahaModel grahaData = new GrahaModel();
             int id = Integer.parseInt(idArray[i]);
-            Graha g = Graha.getById(id);
-            grahaData.setId(g.getId());
-            grahaData.setName(g.getName());
-            grahaData.settName(g.getTname());
-            list.add(grahaData);
+            if (id > -1) {
+                GrahaModel grahaData = new GrahaModel();
+
+                Graha g = Graha.getById(id);
+                grahaData.setId(g.getId());
+                grahaData.setName(g.getName());
+                grahaData.settName(g.getTname());
+                list.add(grahaData);
+            }
         }
 
         return list;

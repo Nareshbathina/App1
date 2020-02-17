@@ -7,7 +7,7 @@ package com.app1.enums;
 
 public enum Graha {
     SUN(1, "Sun", "Ravi", "2,3,5", "4", "6,7"),
-    MOON(2, "Moon", "Chandra", "1,4", "3,5,6,7", ""),
+    MOON(2, "Moon", "Chandra", "1,4", "3,5,6,7", "-1"),
     MARS(3, "Mars", "kuja", "1,2,5", "6,7", "4"),
     MERCURY(4, "Mercury", "Budha", "1,6", "3,5,7", "2"),
     JUPITER(5, "Jupiter", "Guru", "1,2,3", "7", "4,6"),

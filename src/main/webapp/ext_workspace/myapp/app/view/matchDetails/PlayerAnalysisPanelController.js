@@ -8,7 +8,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
 
         });
     },
-    getPlanetInfoMap : function () {
+    getPlanetInfoMap: function () {
         if (!this.planetMap) {
             var map = new Ext.util.HashMap();
             map.add('Aries', 3);
@@ -41,25 +41,6 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
         var record = store.getAt(index);
         var data = record.data;
         var d = [];
-       
-       
-        var mainPanel = panel.up('app-main');
-        
-        
-          Ext.Ajax.request({
-                url: 'getZsignsData.htm',
-                params: {'id': record.get('sunsignId')},
-                method: 'GET',
-                success: function (response, options) {
-                    var obj = Ext.util.JSON.decode(response.responseText);
-                      debugger
-                },
-                failure: function (response, options) {
-
-                }
-            });
-        
-        
         var planetDetails = Ext.ComponentQuery.query('#planetDetails')[0];
         var planetInfoGrid = planetDetails.query('grid')[0];
         var planetPoints = planetDetails.query('grid')[1];
@@ -67,9 +48,99 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
         var planetInfoId = planetMap.get(data.sunsign);
         var planetInfoIdx = planetInfoGrid.getStore().find('id', planetInfoId);
         var planetInfoRecord = planetInfoGrid.getStore().getAt(planetInfoIdx);
-        Ext.apply(data,planetInfoRecord.data);
+        Ext.apply(data, planetInfoRecord.data);
         d.push(data);
-         panel.down('dataview').getStore().loadData(d);
-        debugger
+        panel.down('dataview').getStore().loadData(d);
+
+
+
+        this.loadGrids(data.sunsignId);
+
+
+    },
+    loadGrids: function (signId) {
+        var view = this.getView();
+        var planetMap = this.getPlanetInfoMap();
+        var friendsGrid = view.down('#friendsGrid');
+        var enimiesGrid = view.down('#enimiesGrid');
+        var equalGrid = view.down('#equalGrid');
+        var othersGrid = view.down('#othersGrid');
+        Ext.Ajax.request({
+            url: 'getZsignsData.htm',
+            params: {'id': signId},
+            method: 'GET',
+            success: function (response, options) {
+                var obj = Ext.util.JSON.decode(response.responseText);
+                var data = obj.Data[0];
+                var friends = data.friends;
+                var enimes = data.enimes;
+                var equal = data.equal;
+                var fIds = [], enIds = [], eqIds = [];
+                Ext.each(friends, function (f) {
+                    planetMap.each(function (key, value, length) {
+                        if (f.id == value.toString()) {
+                            f.planetId = value;
+                            fIds.push(value.toString());
+                        }
+                    });
+                });
+                Ext.each(enimes, function (f) {
+                    planetMap.each(function (key, value, length) {
+                        if (f.id == value.toString()) {
+                            f.planetId = value;
+                            enIds.push(value.toString());
+                        }
+                    });
+                });
+                Ext.each(equal, function (f) {
+                    planetMap.each(function (key, value, length) {
+                        if (f.id == value.toString()) {
+                            f.planetId = value;
+                            eqIds.push(value.toString());
+                        }
+                    });
+                });
+                var friendRecords = [], enemyRecords = [], equalRecords = [], otherRecords =[];
+                var mainTabPanel = view.up('#mainTabPanel');
+                var teamSelector = mainTabPanel.query('#team1PlayerAnalysis')[0];
+                var store = teamSelector.getStore();
+                store.each(function (record) {
+                    if (fIds.indexOf(record.get('sunsignId')) > -1) {
+                        friendRecords.push(record.data);
+                    }else if (enIds.indexOf(record.get('sunsignId')) > -1) {
+                        enemyRecords.push(record.data);
+                    }else if (eqIds.indexOf(record.get('sunsignId')) > -1) {
+                        equalRecords.push(record.data);
+                    }else if(record.get('sunsignId') == signId){
+                        equalRecords.push(record.data);
+                    }else{
+                        otherRecords.push(record.data);
+                    }
+                });
+                teamSelector = mainTabPanel.query('#team2PlayerAnalysis')[0];
+                store = teamSelector.getStore();
+                store.each(function (record) {
+                     if (fIds.indexOf(record.get('sunsignId')) > -1) {
+                        friendRecords.push(record.data);
+                    }else if (enIds.indexOf(record.get('sunsignId')) > -1) {
+                        enemyRecords.push(record.data);
+                    }else if (eqIds.indexOf(record.get('sunsignId')) > -1) {
+                        equalRecords.push(record.data);
+                    }else if(record.get('sunsignId') == signId){
+                        equalRecords.push(record.data);
+                    }else{
+                        otherRecords.push(record.data);
+                    }
+                });
+                friendsGrid.getStore().loadData(friendRecords);
+                enimiesGrid.getStore().loadData(enemyRecords);
+                equalGrid.getStore().loadData(equalRecords);
+                othersGrid.getStore().loadData(otherRecords);
+            },
+            failure: function (response, options) {
+
+            }
+        });
+
     }
 });

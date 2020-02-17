@@ -15,5 +15,8 @@ Ext.define('MyApp.model.Player', {
     }, {
         name: 'shipped',
         type: 'boolean'
+    },{
+        name : 'order',
+        type : 'int'
     }]
 });

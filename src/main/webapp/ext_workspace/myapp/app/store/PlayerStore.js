@@ -25,6 +25,9 @@ Ext.define('MyApp.store.PlayerStore', {
     autoLoad: false,
    
     sorters: [{
+              property: 'order',
+            direction: 'ASC' // or 'ASC'
+    },{
             property: 'playerType',
             direction: 'ASC' // or 'ASC'
         }],

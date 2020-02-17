@@ -31,7 +31,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
             success: function (response, options) {
                 var responseObj = Ext.decode(response.responseText);
                 var data = responseObj.Data[0];
-                me.loadTeamGrids(data.team1Id, data.team2Id);
+                me.loadTeamGrids(data.team1Id, data.team2Id,data.team1PlayersInfo,data.team2PlayersInfo);
             },
             failure: function (response, options) {
 
@@ -39,17 +39,44 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
         });
 
     },
-    loadTeamGrids: function (team1Id, team2Id) {
+    loadTeamGrids: function (team1Id, team2Id,team1Data,team2Data) {
         var me = this;
         var view = me.getView();
 
         var teamSelector1 = view.query('#team1PlayerAnalysis')[0];
-        teamSelector1.getStore().load({params: {teamId: team1Id}});
+        var team1Store = teamSelector1.getStore();
+        team1Store.load({params: {teamId: team1Id}});
         var teamSelector2 = view.query('#team2PlayerAnalysis')[0];
-        teamSelector2.getStore().load({params: {teamId: team2Id}});
+        var team2Store = teamSelector2.getStore();
+        team2Store.load({params: {teamId: team2Id}});
         Ext.defer(function () {
+            if(!Ext.isEmpty(team1Data)){
+                var t1Data = team1Data.split(',');
+                var recordsTobeRemoved = [];
+                team1Store.each(function (record,idx) {
+                  if(t1Data.indexOf(record.get('id')) ==-1 ){
+                      recordsTobeRemoved.push(record);
+                  }else{
+                      record.set('order',t1Data.indexOf(record.get('id')));
+                  }
+                });
+                team1Store.remove(recordsTobeRemoved);
+                var t2Data = team2Data.split(',');
+                recordsTobeRemoved = [];
+                team2Store.each(function (record,idx) {
+                  if(t2Data.indexOf(record.get('id')) ==-1 ){
+                      recordsTobeRemoved.push(record);
+                  }else{
+                      record.set('order',t2Data.indexOf(record.get('id')));
+                  }
+                });
+                team2Store.remove(recordsTobeRemoved);
+                team1Store.sort('order','ASC');
+                team2Store.sort('order','ASC');
+            }
             me.addTabsForPlayer();
-        }, 500, view);
+            
+        }, 700, view);
 
     },
     onSingCheckChange: function (field, nVal) {
@@ -110,5 +137,6 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
             });
 
         });
-    }
+    },
+   
 });

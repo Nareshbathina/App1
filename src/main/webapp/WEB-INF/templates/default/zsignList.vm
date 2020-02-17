@@ -4,6 +4,31 @@
 	"totalCount":$!totalCount,
 	"Data": [
 		#foreach( $!zSign in $!zSignData ){
+
+                        "friends" :[
+                        #foreach( $!gmodel in $!zSign.getGraha().getFriends()){
+                                "id" : "$!gmodel.getId()",
+                                "name": "$!gmodel.getName()"
+                            }
+                        #if ($velocityCount < $!zSign.getGraha().getFriends().size() - 1),#end
+	                #end    
+                        ],
+                         "enimes" :[
+                        #foreach( $!gmodel in $!zSign.getGraha().getEnemies() ){
+                         "id" : "$!gmodel.getId()",
+                                "name": "$!gmodel.getName()"
+                        }
+                           #if ($velocityCount < $!zSign.getGraha().getEnemies().size() - 1),#end
+                        #end    
+                        ],   
+                         "equal" :[
+                        #foreach( $!gmodel in $!zSign.getGraha().getEqual() ){
+                             "id" : "$!gmodel.getId()",
+                                "name": "$!gmodel.getName()"
+                        }
+                         #if ($velocityCount < $!zSign.getGraha().getEqual().size() - 1),#end
+                        #end    
+                        ],   
                         "id" : "$!zSign.getId()",
                         "name" : "$!zSign.getDisplayName()",
                          "points" : "$!zSign.getPoints()",
