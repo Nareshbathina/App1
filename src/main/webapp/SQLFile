@@ -1,0 +1,161 @@
+USE world;
+
+CREATE TABLE League (
+    Id VARCHAR(36) NOT NULL,
+    Name VARCHAR(255),
+	Code VARCHAR(10),
+	Venu VARCHAR(100),
+	StartDate DATE,
+	EndDate	DATE,
+	LogoPath VARCHAR(100),
+	ImagesPath VARCHAR(100),
+	Result	VARCHAR(100),
+	Description VARCHAR(1000),
+	UNIQUE (Id),
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE Team (
+    Id VARCHAR(36) NOT NULL,
+	LeagueId VARCHAR(36) NOT NULL,
+    Name VARCHAR(255),
+	Code VARCHAR(10),
+	LogoPath VARCHAR(100),
+	ImagesPath VARCHAR(100),
+	Description VARCHAR(1000),
+	FOREIGN KEY (LeagueId) REFERENCES League(Id),
+    UNIQUE (Id),
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE Player (
+    Id VARCHAR(36) NOT NULL,
+	TeamId VARCHAR(36) NOT NULL,
+	Name VARCHAR(50),
+	ShortName VARCHAR(20),
+	Description VARCHAR(500),
+    DOB DATE,
+	SunSign int(10),
+	MoonSign int(10),
+	PlayerType int(10),
+	PlayerLevel int(10),
+	Form int(10),
+	Country VARCHAR(20),
+	FOREIGN KEY (TeamId) REFERENCES Team(Id),
+    PRIMARY KEY(Id)
+);
+CREATE TABLE Broker (
+    Id VARCHAR(36) NOT NULL,
+    Name VARCHAR(255),
+	Code VARCHAR(10),
+	LogoPath VARCHAR(100),
+	UNIQUE (Id),
+    PRIMARY KEY(Id)
+);
+CREATE TABLE BrokerPlayer (
+    Id VARCHAR(36) NOT NULL,
+	BrokerId VARCHAR(36) NOT NULL,
+	TeamId VARCHAR(36) NOT NULL,
+	PlayerId VARCHAR(36) NOT NULL,
+	PlayerType int(11),
+	Points int(10),
+	Credits int(10),
+	FOREIGN KEY (BrokerId) REFERENCES Broker(Id),
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE Matches (
+    Id VARCHAR(36) NOT NULL,
+	LeagueId VARCHAR(36) NOT NULL,
+	Team1Id VARCHAR(36) NOT NULL,
+	Team2Id VARCHAR(36) NOT NULL,
+	Team1PlayersInfo VARCHAR(2000),
+	Team2PlayersInfo VARCHAR(2000),
+	Date datetime,
+	Venu VARCHAR(100),
+	MoonPlace VARCHAR(100),
+	Description VARCHAR(1000),
+	Result VARCHAR(100),
+	PRIMARY KEY (Id)
+);
+CREATE TABLE horoscope (
+   id int(11) NOT NULL AUTO_INCREMENT,
+	Date datetime DEFAULT NULL,
+	MoonPlace int DEFAULT NULL,
+	MoonType int DEFAULT NULL,
+	SunPlace int DEFAULT NULL,
+	JupiterPlace int DEFAULT NULL,
+	VenusPlace int DEFAULT NULL,
+	MarsPlace int DEFAULT NULL,
+	SaturnPlace int DEFAULT NULL,
+	MercuryPlace int DEFAULT NULL,
+	Aries varchar(10) DEFAULT NULL,
+	Tarus varchar(10) DEFAULT NULL,
+	Gemini varchar(10) DEFAULT NULL,
+	Cancer varchar(10) DEFAULT NULL,
+	Leo varchar(10) DEFAULT NULL,
+	Virgo varchar(10) DEFAULT NULL,
+	Libra varchar(10) DEFAULT NULL,
+	Scorpio varchar(10) DEFAULT NULL,
+	Sagittarius varchar(10) DEFAULT NULL,
+	Capricon varchar(10) DEFAULT NULL,
+	Aquarius varchar(10) DEFAULT NULL,
+	Pisces varchar(10) DEFAULT NULL,
+	SourceLink1 varchar(300) DEFAULT NULL,
+	SourceLink2 varchar(300) DEFAULT NULL,
+   SourceLink3 varchar(300) DEFAULT NULL,
+   PRIMARY KEY (id)
+ ) ;
+CREATE TABLE Planet (
+    Id int(11) NOT NULL AUTO_INCREMENT,
+	Name varchar(10) DEFAULT NULL,
+	Alias varchar(10) DEFAULT NULL,
+	Description varchar(300) DEFAULT NULL,
+	Friends varchar(300) DEFAULT NULL,
+	Equal varchar(300) DEFAULT NULL,
+	Eniemes varchar(300) DEFAULT NULL,
+	Signs varchar(100) DEFAULT NULL,
+    PRIMARY KEY (Id)
+) ;
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs) VALUES ('Sun', 'Ravi','....','2,3,5','4','6,7','5');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Moon', 'Chandra','...','1,4','3,5,6,7','','4');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Mars', 'Kuja','...','1,2,5','6,7','4','1,8');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Mercury', 'Budha','...','1,6','3,5,7','2','3,6');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Jupiter', 'Guru','...','1,2,3','7','4,6','9,12');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Venus', 'Sukra','...','4,7','5,3','1,2','2,7');
+INSERT INTO    planet (Name, Alias,Description,Friends,Equal,Eniemes,Signs)  VALUES ('Saturn', 'Sani','...','4,6','5','1,2,3','10,11');  
+
+
+CREATE TABLE PlanetPoints (
+    Id int(11) NOT NULL AUTO_INCREMENT,
+	SignId    int DEFAULT NULL,
+    PlanetId int DEFAULT NULL,
+	Aries int DEFAULT NULL,
+	Tarus int DEFAULT NULL,
+	Gemini int DEFAULT NULL,
+	Cancer int DEFAULT NULL,
+	Leo int DEFAULT NULL,
+	Virgo int DEFAULT NULL,
+	Libra int DEFAULT NULL,
+	Scorpio int DEFAULT NULL,
+	Sagittarius int DEFAULT NULL,
+	Capricon int DEFAULT NULL,
+	Aquarius int DEFAULT NULL,
+	Pisces int DEFAULT NULL,
+    PRIMARY KEY (Id)
+);
+
+
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('3', '1', '3','6','6','2','7','6','4','6','9','6','6','4');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('6', '2', '7','2','4','8','6','10','7','6','3','9','3','7');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('4', '3', '8','4','2','4','8','6','10','4','7','4','9','6');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('2', '4', '3','8','4','5','7','8','5','8','4','8','4','10');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('1', '5', '9','6','8','7','1','5','7','4','10','5','7','6');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('4', '6', '6','10','6','8','5','1','6','7','5','9','7','4');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('6', '7', '4','7','10','5','7','6','2','6','7','4','9','6');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('3', '8', '6','6','4','8','4','7','6','2','4','7','3','10');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('5', '9', '9','3','7','4','10','5','7','4','3','5','8','4');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('7', '10', '6','9','4','8','5','9','4','7','5','6','7','2');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('7', '11', '6','3','9','4','7','7','9','3','8','7','5','4');
+INSERT INTO planetpoints (SignId,PlanetId,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces) VALUES ('5', '12', '4','7','6','10','6','4','6','10','4','2','4','3');
+
