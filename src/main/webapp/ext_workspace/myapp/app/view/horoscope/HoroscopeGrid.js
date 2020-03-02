@@ -69,6 +69,13 @@ Ext.define('MyApp.view.horoscope.HoroscopeGrid', {
           
           var editor = {xtype: 'combo',value:'Good',allowBlank: false,store:['Good','Average','Bad','Worst','Dont know','Struggle','Hard work']};
           var  columns = [
+              {text: 'Sun', dataIndex: 'sun',editor: editor, flex: 1},
+              {text: 'Moon', dataIndex: 'moon',editor: editor, flex: 1},
+              {text: 'Mars', dataIndex: 'mars',editor: editor, flex: 1},
+              {text: 'Mercury', dataIndex: 'mercury',editor: editor, flex: 1},
+              {text: 'Jupiter', dataIndex: 'jupiter',editor: editor, flex: 1},
+              {text: 'Venus', dataIndex: 'venus',editor: editor, flex: 1},
+              {text: 'Saturn', dataIndex: 'saturn',editor: editor, flex: 1},
         {text: 'Aries', dataIndex: 'aries',editor: editor, flex: 1},
         {text: 'Tarus', dataIndex: 'tarus',editor: editor,  flex: 1},
         {text: 'Gemini', dataIndex: 'gemini',editor: editor,  flex: 1},

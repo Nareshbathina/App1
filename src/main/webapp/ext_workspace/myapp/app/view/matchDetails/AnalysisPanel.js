@@ -67,7 +67,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                     columns: [
                         {text: 'Id', dataIndex: 'id', hidden: true},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
-                            tpl: '<div><img src="images/avatar/avatar1.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{type}.png" style="width: 22px;"> </div>'},
+                            tpl: '<div><img src="images/avatar/avatar1.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}"style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{type}.png" style="width: 22px;"> </div>'},
                     ]
                 }, {
                     xtype: 'grid',
@@ -79,7 +79,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                     columns: [
                         {text: 'Id', dataIndex: 'id', hidden: true},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
-                            tpl: '<div><img src="images/avatar/avatar2.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{type}.png" style="width: 22px;"> </div>'},
+                            tpl: '<div><img src="images/avatar/avatar2.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{type}.png" style="width: 22px;"> </div>'},
                     ]
                 }],
             dockedItems: [{
