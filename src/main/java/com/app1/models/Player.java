@@ -5,6 +5,7 @@
  */
 package com.app1.models;
 
+import com.app1.enums.PlayerType;
 import com.app1.enums.Zsign;
 
 /**
@@ -18,11 +19,11 @@ public class Player {
     String name;
     String ShortName;
     String dob;
-    String sunSign;
-    String moonSign;
-    String type;
-    String form;
-    String level;
+    int sunSign;
+    int moonSign;
+    int type;
+    int form;
+    int level;
     String description;
     String country;
     String b1;
@@ -70,47 +71,43 @@ public class Player {
         this.dob = dob;
     }
 
-    public String getSunSign() {
-        if (sunSign != null) {
-            Zsign sign = Zsign.getById(Integer.parseInt(sunSign));
-            return sign.getDisplay();
-        }
+    public int getSunSign() {
         return sunSign;
     }
 
-    public void setSunSign(String sunSign) {
+    public void setSunSign(int sunSign) {
         this.sunSign = sunSign;
     }
 
-    public String getMoonSign() {
+    public int getMoonSign() {
         return moonSign;
     }
 
-    public void setMoonSign(String moonSign) {
+    public void setMoonSign(int moonSign) {
         this.moonSign = moonSign;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getForm() {
+    public int getForm() {
         return form;
     }
 
-    public void setForm(String form) {
+    public void setForm(int form) {
         this.form = form;
     }
 
-    public String getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -161,8 +158,18 @@ public class Player {
     public void setB4(String b4) {
         this.b4 = b4;
     }
-    
-    public String getSunSignId() {
-        return sunSign;
+     public String getSunSignName() {
+        if (sunSign != -1) {
+            Zsign sign = Zsign.getById(sunSign);
+            return sign.getDisplay();
+        }
+        return "";
+    }
+     public String getPlayerTypeImg() {
+        if (type != -1) {
+            PlayerType tye = PlayerType.getById(type);
+            return tye.getDisplay();
+        }
+        return "";
     }
 }

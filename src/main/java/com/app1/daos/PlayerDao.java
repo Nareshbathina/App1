@@ -112,11 +112,11 @@ public class PlayerDao {
             player.setDescription(rs.getString("Description"));
             player.setTeamId(rs.getString("TeamId"));
             player.setShortName(rs.getString("ShortName"));
-            player.setType(rs.getString("PlayerType"));
-            player.setForm(rs.getString("Form"));
-            player.setSunSign(rs.getString("SunSign"));
-            player.setMoonSign(rs.getString("MoonSign"));
-            player.setLevel(rs.getString("PlayerLevel"));
+            player.setType(rs.getInt("PlayerType"));
+            player.setForm(rs.getInt("Form"));
+            player.setSunSign(rs.getInt("SunSign"));
+            player.setMoonSign(rs.getInt("MoonSign"));
+            player.setLevel(rs.getInt("PlayerLevel"));
             return player;
         }
     }
@@ -142,9 +142,9 @@ public class PlayerDao {
             player.setId(rs.getString("Id"));
             player.setBrokerId(rs.getString("BrokerId"));
             player.setPlayerId(rs.getString("PlayerId"));
-            player.setPoints(rs.getString("Points"));
-            player.setCredits(rs.getString("Credits"));
-            player.setType(rs.getString("PlayerType"));
+            player.setPoints(rs.getFloat("Points"));
+            player.setCredits(rs.getFloat("Credits"));
+            player.setType(rs.getInt("PlayerType"));
             return player;
         }
     }

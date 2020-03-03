@@ -14,9 +14,9 @@ public class BrokerPlayer {
     String brokerId;
     String teamId;
     String playerId;
-    String type;
-    String points;
-    String credits;
+    int type;
+    Float points;
+    Float credits;
 
     public String getId() {
         return id;
@@ -50,28 +50,29 @@ public class BrokerPlayer {
         this.playerId = playerId;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getPoints() {
+    public Float getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(Float points) {
         this.points = points;
     }
 
-    public String getCredits() {
+    public Float getCredits() {
         return credits;
     }
 
-    public void setCredits(String credits) {
+    public void setCredits(Float credits) {
         this.credits = credits;
     }
-    
+
+   
 }

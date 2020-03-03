@@ -41,6 +41,10 @@ CREATE TABLE Player (
 	PlayerLevel int(10),
 	Form int(10),
 	Country VARCHAR(20),
+     b1 varchar(255),
+    b2 varchar(255),
+    b3 varchar(255),
+    b4 varchar(255),
 	FOREIGN KEY (TeamId) REFERENCES Team(Id),
     PRIMARY KEY(Id)
 );
@@ -58,8 +62,8 @@ CREATE TABLE BrokerPlayer (
 	TeamId VARCHAR(36) NOT NULL,
 	PlayerId VARCHAR(36) NOT NULL,
 	PlayerType int(11),
-	Points int(10),
-	Credits int(10),
+	Points float(10),
+	Credits float(10),
 	FOREIGN KEY (BrokerId) REFERENCES Broker(Id),
     PRIMARY KEY(Id)
 );
@@ -76,6 +80,10 @@ CREATE TABLE Matches (
 	MoonPlace VARCHAR(100),
 	Description VARCHAR(1000),
 	Result VARCHAR(100),
+     b1 varchar(255),
+    b2 varchar(255),
+    b3 varchar(255),
+    b4 varchar(255),
 	PRIMARY KEY (Id)
 );
 CREATE TABLE horoscope (

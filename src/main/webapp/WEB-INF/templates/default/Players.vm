@@ -5,13 +5,14 @@
 	"Data": [
 		#foreach( $!player in $!players ){
                         "id" :  "$!player.getId()",
-			"sunsign" : "$!player.getSunSign()",
-                        "sunsignId" : "$!player.getSunSignId()",
+			"sunsign" : "$!player.getSunSignName()",
+                        "sunsignId" : $!player.getSunSign(),
                         "name" : "$!player.getName()",
                         "sName" : "$!player.getShortName()",
-                        "type" : "$!player.getType()",
-                        "form": "$!player.getForm()",
-                        "capacity" :  "$!player.getLevel()",
+                        "type" : $!player.getType(),
+                        "typeImg" : "$!player.getPlayerTypeImg()",
+                        "form": $!player.getForm(),
+                        "capacity" :  $!player.getLevel(),
                         "iconName" : "$!player.getIconName()",
                         "teamId"  : "$!player.getTeamId()",
                         "description" : "$!player.getDescription()"
