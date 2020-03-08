@@ -7,7 +7,7 @@
 
 Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
     extend: 'Ext.panel.Panel',
-    requires: ['MyApp.store.MatchStore','MyApp.view.matchDetails.PlayerAnalysisPanel','MyApp.view.matchDetails.SignPanel'],
+    requires: ['MyApp.store.MatchStore', 'MyApp.view.matchDetails.PlayerAnalysisPanel', 'MyApp.view.matchDetails.SignPanel'],
     xtype: 'analysisPanel',
     alias: 'widget.analysisPanel',
     layout: 'column',
@@ -45,6 +45,13 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                         autoLoad: false
                     }),
 
+                }, {
+                    xtype: 'button',
+                    columnWidth: .1,
+                    itemId: 'astroLoadBtn',
+                    hidden: true,
+                    text: 'Load Astro',
+                    handler: 'onLoadAstro'
                 }]
 
         }, {
@@ -52,7 +59,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
             layout: 'column',
             title: 'Teams',
             collapsible: true,
-            columnWidth: .4,
+            columnWidth: .6,
             defaults: {
                 margin: '5px',
                 hideHeaders: true
@@ -67,7 +74,11 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                     columns: [
                         {text: 'Id', dataIndex: 'id', hidden: true},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
-                            tpl: '<div><img src="images/avatar/avatar1.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}"style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
+                            tpl: '<div><img src="images/avatar/avatar1.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{sName}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}"style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
+                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
+                            tpl: '{planetName} {planetPositionName} {hScopeResult}'},
+                         {text: 'dayPoints', dataIndex: 'dayPoints', sortable: true},
+                        
                     ]
                 }, {
                     xtype: 'grid',
@@ -79,7 +90,11 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                     columns: [
                         {text: 'Id', dataIndex: 'id', hidden: true},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
-                            tpl: '<div><img src="images/avatar/avatar2.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{name}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
+                            tpl: '<div><img src="images/avatar/avatar2.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{sName}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
+                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
+                            tpl: '{planetName} {planetPositionName} {hScopeResult}'},
+                         {text: 'dayPoints', dataIndex: 'dayPoints', sortable: true},
+                        
                     ]
                 }],
             dockedItems: [{
@@ -140,7 +155,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
 
         }, {
             xtype: 'tabpanel',
-            headerPosition : 'right',
+            headerPosition: 'right',
             title: 'Group Panel',
             collapsible: true,
             layout: 'column',
@@ -148,46 +163,45 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                 columnWidth: .5,
                 xtype: 'signPanel',
                 collapsible: true,
-                
-               
+
             },
-            columnWidth: .6,
+            columnWidth: .4,
             items: [{
                     title: 'Aries',
-                    signId : 1
+                    signId: 1
                 }, {
                     title: 'Tarus',
-                    signId : 2
+                    signId: 2
                 }, {
                     title: 'Gemini',
-                    signId : 3
+                    signId: 3
                 }, {
                     title: 'Cancer',
-                    signId : 4
+                    signId: 4
                 }, {
                     title: 'Leo',
-                    signId : 5
+                    signId: 5
                 }, {
                     title: 'Virgo',
-                    signId : 6
+                    signId: 6
                 }, {
                     title: 'Libra',
-                    signId : 7
+                    signId: 7
                 }, {
                     title: 'Scorpio',
-                    signId : 8
+                    signId: 8
                 }, {
                     title: 'Sagittarius',
-                    signId : 9
+                    signId: 9
                 }, {
                     title: 'Capricon',
-                    signId : 10
+                    signId: 10
                 }, {
                     title: 'Aquarius',
-                    signId : 11
+                    signId: 11
                 }, {
                     title: 'Pisces',
-                    signId : 12
+                    signId: 12
                 }]
         }]
 

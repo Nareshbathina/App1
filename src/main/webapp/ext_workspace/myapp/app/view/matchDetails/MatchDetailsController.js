@@ -23,7 +23,8 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
     onMatchSelect: function (field, record) {
         var me = this;
         var view = me.getView();
-        var matchCmb = view.query('#matchCmb')[0];
+        var astroLoadBtn = view.query('#astroLoadBtn')[0];
+      
         Ext.Ajax.request({
             url: 'getMatchDetails.htm',
             params: {id: record.get('id')},
@@ -32,6 +33,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                 var responseObj = Ext.decode(response.responseText);
                 var data = responseObj.Data[0];
                 me.loadTeamGrids(data.team1Id, data.team2Id,data.team1PlayersInfo,data.team2PlayersInfo);
+                astroLoadBtn.setVisible(true);
             },
             failure: function (response, options) {
 
@@ -76,7 +78,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
             }
             me.addTabsForPlayer();
             
-        }, 700, view);
+        }, 800, view);
 
     },
     onSingCheckChange: function (field, nVal) {
@@ -138,5 +140,52 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
 
         });
     },
-   
+    onLoadAstro : function(){
+         var me = this;
+        var view = me.getView();
+        var view = me.getView();
+        var teamSelector = view.query('#team1PlayerAnalysis')[0];
+      
+        var store1 =  teamSelector.getStore();
+        var teamSelector2 = view.query('#team2PlayerAnalysis')[0];
+      
+        var store2 =  teamSelector2.getStore();
+        var matchCmb = view.query('#matchCmb')[0];
+        if(!Ext.isEmpty(matchCmb.getValue())){
+            Ext.Ajax.request({
+            url: 'getAstroDataForPlayers.htm',
+            params: {matchId: matchCmb.getValue()},
+            method: 'GET',
+            success: function (response, options) {
+                var responseObj = Ext.decode(response.responseText);
+                var data = responseObj.Data;
+                Ext.each(data,function(d){
+                   var idx = store1.find("id",d.playerId);
+                   if(idx!=-1){
+                       var rec = store1.getAt(idx);
+                       rec.set('planetName',d.planetName);
+                       rec.set('hScopeResult',d.hScopeResult);
+                       rec.set('dayPoints',d.dayPoints);
+                       rec.commit();
+                    }else{
+                        idx = store2.find("id",d.playerId);
+                        if(idx!=-1){
+                            var rec = store2.getAt(idx);
+                            rec.set('planetName',d.planetName);
+                            rec.set('hScopeResult',d.hScopeResult);
+                            rec.set('dayPoints',d.dayPoints);
+                            rec.commit();
+                         }
+                        
+                    }
+                });
+               
+            },
+            failure: function (response, options) {
+
+            }
+        }); 
+        }
+      
+    }
 });

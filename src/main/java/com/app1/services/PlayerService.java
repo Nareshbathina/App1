@@ -23,5 +23,8 @@ public class PlayerService {
     public List<BrokerPlayer> getBrokerPlayerByPlayerId(String playerId) {
         return this.teamDao.getBrokerPlayerByPlayerId(playerId);
     }
+    public List<Player> getPlayerByPlayerIds(String[] playerIds) {
+        return this.teamDao.getPlayerByPlayerIds(playerIds);
+    }
     
 }

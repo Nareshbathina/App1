@@ -66,16 +66,24 @@ Ext.define('MyApp.view.horoscope.HoroscopeGrid', {
                 }]
       }],
       initComponent: function () {
-          
+          var planetStore = Ext.create('Ext.data.Store', {fields:'name,value',data:[{name:'Aries',value:1},{name:'Tarus',value:2},{name:'Gemini',value:3},{name:'Cancer',value:4},{name:'Leo',value:5},{name:'Virgo',value:6},{name:'Libra',value:7},{name:'Scorpio',value:8},{name:'Sagittarius',value:9},{name:'Capricon',value:10},{name:'Aquarius',value:11},{name:'Pisces',value:12}]});
           var editor = {xtype: 'combo',value:'Good',allowBlank: false,store:['Good','Average','Bad','Worst','Dont know','Struggle','Hard work']};
+           var editor1 = {xtype: 'combo',allowBlank: false,displayField:'name',valueField:'value',store:planetStore } ;
+           var rend = function(val){
+                var index = planetStore.findExact('value',val); 
+                if (index != -1){
+                    var rs = planetStore.getAt(index).data; 
+                    return rs.name; 
+                }
+            };
           var  columns = [
-              {text: 'Sun', dataIndex: 'sun',editor: editor, flex: 1},
-              {text: 'Moon', dataIndex: 'moon',editor: editor, flex: 1},
-              {text: 'Mars', dataIndex: 'mars',editor: editor, flex: 1},
-              {text: 'Mercury', dataIndex: 'mercury',editor: editor, flex: 1},
-              {text: 'Jupiter', dataIndex: 'jupiter',editor: editor, flex: 1},
-              {text: 'Venus', dataIndex: 'venus',editor: editor, flex: 1},
-              {text: 'Saturn', dataIndex: 'saturn',editor: editor, flex: 1},
+              {text: 'Sun', dataIndex: 'sunPlace',editor: editor1, flex: 1, renderer: rend},
+              {text: 'Moon', dataIndex: 'moonPlace',editor: editor1, flex: 1,renderer: rend},
+              {text: 'Mars', dataIndex: 'marsPlace',editor: editor1, flex: 1,renderer: rend},
+              {text: 'Mercury', dataIndex: 'mercuryPlace',editor: editor1, flex: 1,renderer: rend},
+              {text: 'Jupiter', dataIndex: 'jupiterPlace',editor: editor1, flex: 1,renderer: rend},
+              {text: 'Venus', dataIndex: 'venusPlace',editor: editor1, flex: 1,renderer: rend},
+              {text: 'Saturn', dataIndex: 'saturnPlace',editor: editor1, flex: 1,renderer: rend},
         {text: 'Aries', dataIndex: 'aries',editor: editor, flex: 1},
         {text: 'Tarus', dataIndex: 'tarus',editor: editor,  flex: 1},
         {text: 'Gemini', dataIndex: 'gemini',editor: editor,  flex: 1},

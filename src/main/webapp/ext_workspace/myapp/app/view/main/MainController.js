@@ -37,8 +37,8 @@ Ext.define('MyApp.view.main.MainController', {
             return false;
         }
         params.date = datefield.getRawValue();
-        params.moonPlace="";
-        params.moonType="";
+     
+        params.moonType=-1;
         params.sourceLink1="";
         params.sourceLink2="";
         params.sourceLink3="";

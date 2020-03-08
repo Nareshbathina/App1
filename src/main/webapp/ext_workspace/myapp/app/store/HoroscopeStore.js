@@ -4,7 +4,7 @@ Ext.define('MyApp.store.HoroscopeStore', {
     alias: 'store.horoscopeStore',
     autoLoad : false,
     fields: [
-        'id','aries','tarus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'
+        'id','aries','tarus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces','moonPlace','sunPlace','jupiterPlace','venusPlace','marsPlace','saturnPlace','mercuryPlace','moonType'
     ],
     proxy: {
         type: 'ajax',

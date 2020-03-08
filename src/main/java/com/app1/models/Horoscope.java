@@ -5,6 +5,8 @@
  */
 package com.app1.models;
 
+import com.app1.enums.Zsign;
+
 /**
  *
  * @author user
@@ -13,8 +15,14 @@ public class Horoscope {
 
     int id;
     String date;
-    String moonPlace;
-    String moonType;
+    int moonPlace;
+    int sunPlace;
+    int jupiterPlace;
+    int venusPlace;
+    int marsPlace;
+    int saturnPlace;
+    int mercuryPlace;
+    int moonType;
     String aries;
     String tarus;
     String gemini;
@@ -47,21 +55,7 @@ public class Horoscope {
         this.date = date;
     }
 
-    public String getMoonPlace() {
-        return moonPlace;
-    }
-
-    public void setMoonPlace(String moonPlace) {
-        this.moonPlace = moonPlace;
-    }
-
-    public String getMoonType() {
-        return moonType;
-    }
-
-    public void setMoonType(String moonType) {
-        this.moonType = moonType;
-    }
+  
 
     public String getAries() {
         return aries;
@@ -181,6 +175,78 @@ public class Horoscope {
 
     public void setSourceLink3(String sourceLink3) {
         this.sourceLink3 = sourceLink3;
+    }
+
+    public int getMoonPlace() {
+        return moonPlace;
+    }
+
+    public void setMoonPlace(int moonPlace) {
+        this.moonPlace = moonPlace;
+    }
+
+    public int getSunPlace() {
+        return sunPlace;
+    }
+
+    public void setSunPlace(int sunPlace) {
+        this.sunPlace = sunPlace;
+    }
+
+    public int getJupiterPlace() {
+        return jupiterPlace;
+    }
+
+    public void setJupiterPlace(int jupiterPlace) {
+        this.jupiterPlace = jupiterPlace;
+    }
+
+    public int getVenusPlace() {
+        return venusPlace;
+    }
+
+    public void setVenusPlace(int venusPlace) {
+        this.venusPlace = venusPlace;
+    }
+
+    public int getMarsPlace() {
+        return marsPlace;
+    }
+
+    public void setMarsPlace(int marsPlace) {
+        this.marsPlace = marsPlace;
+    }
+
+    public int getSaturnPlace() {
+        return saturnPlace;
+    }
+
+    public void setSaturnPlace(int saturnPlace) {
+        this.saturnPlace = saturnPlace;
+    }
+
+    public int getMercuryPlace() {
+        return mercuryPlace;
+    }
+
+    public void setMercuryPlace(int mercuryPlace) {
+        this.mercuryPlace = mercuryPlace;
+    }
+
+    public int getMoonType() {
+        return moonType;
+    }
+
+    public void setMoonType(int moonType) {
+        this.moonType = moonType;
+    }
+    
+     public String getSignName(int id) {
+        if (id != -1) {
+            Zsign tye = Zsign.getById(id);
+            return tye.getDisplay();
+        }
+        return "";
     }
 
 }

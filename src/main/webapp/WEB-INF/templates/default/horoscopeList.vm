@@ -2,9 +2,17 @@
 	"success":$!success,
         "message":"$!message",
 	"totalCount":$!totalCount,
-	"Data": [
+	"Data": [  
 		#foreach( $!horoscope in $!horoscopes ){
                         "id" : "$!horoscope.id",
+                         "moonPlace": $!horoscope.moonPlace,
+                        "sunPlace": $!horoscope.sunPlace,
+                        "jupiterPlace": $!horoscope.jupiterPlace,
+                        "venusPlace": $!horoscope.venusPlace,
+                        "marsPlace": $!horoscope.marsPlace,
+                        "saturnPlace": $!horoscope.saturnPlace,
+                        "mercuryPlace": $!horoscope.mercuryPlace,
+                        "moonType": "$!horoscope.moonType",
                         "aries": "$!horoscope.aries",
                         "tarus": "$!horoscope.tarus",
                         "gemini": "$!horoscope.gemini",

@@ -7,6 +7,7 @@ package com.app1.controllers;
 
 import com.app1.models.Horoscope;
 import com.app1.models.Match;
+import com.app1.models.PlayerAstro;
 import com.app1.models.ZsignModel;
 import com.app1.services.HoroscopeService;
 import com.app1.services.MatchService;
@@ -99,5 +100,22 @@ public class HoroscopeController {
         }
         model.put("context", data);
         return new ModelAndView(new VelocityTemplateView("zsignList.vm"), model);
+    }
+    
+    @RequestMapping(value = "getAstroDataForPlayers.htm", method = RequestMethod.GET)
+    public ModelAndView getAstroDataForPlayers(@RequestParam String matchId) {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        VelocityContext data = new VelocityContext();
+        try {
+            List<PlayerAstro> playerAstroData = this.horoscopeService.getAstroDataForPlayers(matchId);
+            data.put("playerAstroData", playerAstroData);
+            data.put("totalCount", playerAstroData.size());
+            data.put("success", true);
+        } catch (Exception e) {
+            data.put("success", false);
+            data.put("message", e.getMessage());
+        }
+        model.put("context", data);
+        return new ModelAndView(new VelocityTemplateView("playerAstroList.vm"), model);
     }
 }

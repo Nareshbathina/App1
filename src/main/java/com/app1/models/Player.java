@@ -30,6 +30,9 @@ public class Player {
     String b2;
     String b3;
     String b4;
+    
+    int planetId = -1;
+    String signPoints;
 
     public String getId() {
         return id;
@@ -158,6 +161,24 @@ public class Player {
     public void setB4(String b4) {
         this.b4 = b4;
     }
+
+    public int getPlanetId() {
+        return planetId;
+    }
+
+    public void setPlanetId(int planetId) {
+        this.planetId = planetId;
+    }
+
+    public String getSignPoints() {
+        return signPoints;
+    }
+
+    public void setSignPoints(String signPoints) {
+        this.signPoints = signPoints;
+    }
+    
+    
      public String getSunSignName() {
         if (sunSign != -1) {
             Zsign sign = Zsign.getById(sunSign);

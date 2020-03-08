@@ -1,0 +1,19 @@
+{ 
+	"success":$!success,
+        "message":"$!message",
+	"totalCount":$!totalCount,
+	"Data": [
+		#foreach( $!playerAstro in $!playerAstroData ){
+                        "playerId" :  "$!playerAstro.getPlayerId()",
+			"planetId" : $!playerAstro.getPlanetId(),
+                         "planetName" :  "$!playerAstro.getPlanetName()",
+                        "planetPosition" :  "$!playerAstro.getPlanetPosition()",
+                        "hScopeResult" :  "$!playerAstro.gethScopeResult()",
+                        "dayPoints" :  $!playerAstro.getDayPoints()
+                     
+                          
+		}	
+		#if ($velocityCount < $!playerAstroData.size() - 1),#end
+		#end
+	]
+}

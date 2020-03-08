@@ -36,11 +36,11 @@ public class HoroscopeDao {
     JdbcTemplate jdbcTemplate;
     private InsertHoroscope insertHoroscope;
     private HashMap<String, SelectHoroscope> selectHoroscopeCache = new HashMap<String, SelectHoroscope>();
-     private final HashMap<String, Update> updateCache = new HashMap<String, Update>();
+    private final HashMap<String, Update> updateCache = new HashMap<String, Update>();
     private SqlParameter DATE = new SqlParameter(Types.DATE);
     private SqlParameter VCHAR = new SqlParameter(Types.VARCHAR);
     private SqlParameter INT = new SqlParameter(Types.INTEGER);
-    private static String INSERT_HOROSCOPE_PARAM_VALUES = "INSERT INTO horoscope (Date,MoonPlace,MoonType,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces,SourceLink1,SourceLink2,SourceLink3) VALUES (?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
+    private static String INSERT_HOROSCOPE_PARAM_VALUES = "INSERT INTO horoscope (Date,MoonPlace,SunPlace,JupiterPlace,VenusPlace,MarsPlace,SaturnPlace,MercuryPlace,MoonType,Aries,Tarus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricon,Aquarius,Pisces,SourceLink1,SourceLink2,SourceLink3) VALUES (?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
 
     public void init() throws Exception {
         this.insertHoroscope = new InsertHoroscope(this.datasource);
@@ -51,6 +51,12 @@ public class HoroscopeDao {
         List<Object> values = new ArrayList<Object>();
         values.add(horoscope.getDate());
         values.add(horoscope.getMoonPlace());
+        values.add(horoscope.getSunPlace());
+        values.add(horoscope.getJupiterPlace());
+        values.add(horoscope.getVenusPlace());
+        values.add(horoscope.getMarsPlace());
+        values.add(horoscope.getSaturnPlace());
+        values.add(horoscope.getMercuryPlace());
         values.add(horoscope.getMoonType());
         values.add(horoscope.getAries());
         values.add(horoscope.getTarus());
@@ -74,8 +80,8 @@ public class HoroscopeDao {
 
         return n.toString();
     }
-     
-     public String updateHoroscope(Horoscope horoscope) {
+
+    public String updateHoroscope(Horoscope horoscope) {
         String key = "[updateHoroscope]";
         Update sqlOp;
         if (this.updateCache.containsKey(key)) {
@@ -83,17 +89,16 @@ public class HoroscopeDao {
         } else {
             String sql = "UPDATE Horoscope ";
 
-            sql += " SET Date = ? ,MoonPlace = ? ,MoonType = ? ,Aries = ? ,Tarus = ? ,Gemini = ? ,Cancer = ? ,Leo = ? ,Virgo = ? ,Libra = ? ,Scorpio = ? ,Sagittarius = ? ,Capricon = ? ,Aquarius = ? ,Pisces = ? ,SourceLink1 = ? ,SourceLink2 = ? ,SourceLink3 = ? WHERE id = ?";
-            SqlParameter[] params = new SqlParameter[]{VCHAR, VCHAR, VCHAR,VCHAR, VCHAR, VCHAR,VCHAR, VCHAR, VCHAR,VCHAR, VCHAR, VCHAR,VCHAR, VCHAR, VCHAR,VCHAR, VCHAR, VCHAR, INT};
+            sql += " SET Date = ? ,MoonPlace = ? ,SunPlace = ?, JupiterPlace = ? , VenusPlace = ? , MarsPlace = ? , SaturnPlace = ? , MercuryPlace = ?,MoonType = ? ,Aries = ? ,Tarus = ? ,Gemini = ? ,Cancer = ? ,Leo = ? ,Virgo = ? ,Libra = ? ,Scorpio = ? ,Sagittarius = ? ,Capricon = ? ,Aquarius = ? ,Pisces = ? ,SourceLink1 = ? ,SourceLink2 = ? ,SourceLink3 = ? WHERE id = ?";
+            SqlParameter[] params = new SqlParameter[]{VCHAR, INT, INT, INT, INT, INT, INT, INT, INT, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, VCHAR, INT};
             sqlOp = new Update(sql, params);
             this.updateCache.put(key, sqlOp);
         }
-        Object[] vals = new Object[]{horoscope.getDate(), horoscope.getMoonPlace(), horoscope.getMoonType(), horoscope.getAries(), horoscope.getTarus(), horoscope.getGemini(), horoscope.getCancer(), horoscope.getLeo(), horoscope.getVirgo(), horoscope.getLibra(), horoscope.getScorpio(), horoscope.getSagittarius(), horoscope.getCapricorn(), horoscope.getAquarius(),horoscope.getPisces(), horoscope.getSourceLink1(), horoscope.getSourceLink2(), horoscope.getSourceLink3(), horoscope.getId()};
+        Object[] vals = new Object[]{horoscope.getDate(), horoscope.getMoonPlace(), horoscope.getSunPlace(),horoscope.getJupiterPlace(),horoscope.getVenusPlace(),horoscope.getMarsPlace(),horoscope.getSaturnPlace(),horoscope.getMercuryPlace(), horoscope.getMoonType(), horoscope.getAries(), horoscope.getTarus(), horoscope.getGemini(), horoscope.getCancer(), horoscope.getLeo(), horoscope.getVirgo(), horoscope.getLibra(), horoscope.getScorpio(), horoscope.getSagittarius(), horoscope.getCapricorn(), horoscope.getAquarius(), horoscope.getPisces(), horoscope.getSourceLink1(), horoscope.getSourceLink2(), horoscope.getSourceLink3(), horoscope.getId()};
         int c = sqlOp.update(vals);
         return String.valueOf(c);
     }
-    
-    
+
     public List<Horoscope> getHoroscopeByDate(Date date) {
         String key = "[getHoroscopeByDate]";
         SelectHoroscope sqlOp;
@@ -131,8 +136,14 @@ public class HoroscopeDao {
         protected Horoscope mapRow(ResultSet rs, int rowNo) throws SQLException {
             Horoscope horoscope = new Horoscope();
             horoscope.setId(rs.getInt("Id"));
-            horoscope.setMoonPlace(rs.getString("MoonPlace"));
-            horoscope.setMoonType(rs.getString("MoonType"));
+            horoscope.setMoonPlace(rs.getInt("MoonPlace"));
+            horoscope.setSunPlace(rs.getInt("SunPlace"));
+            horoscope.setJupiterPlace(rs.getInt("JupiterPlace"));
+            horoscope.setVenusPlace(rs.getInt("VenusPlace"));
+            horoscope.setMarsPlace(rs.getInt("MarsPlace"));
+            horoscope.setSaturnPlace(rs.getInt("SaturnPlace"));
+            horoscope.setMercuryPlace(rs.getInt("MercuryPlace"));
+            horoscope.setMoonType(rs.getInt("MoonType"));
             horoscope.setDate(rs.getString("Date"));
             horoscope.setAries(rs.getString("Aries"));
             horoscope.setTarus(rs.getString("Tarus"));
@@ -159,8 +170,14 @@ public class HoroscopeDao {
             super(dataSource, INSERT_HOROSCOPE_PARAM_VALUES);
             this.setReturnGeneratedKeys(true);
             declareParameter(VCHAR);
-            declareParameter(VCHAR);
-            declareParameter(VCHAR);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
+            declareParameter(INT);
             declareParameter(VCHAR);
             declareParameter(VCHAR);
             declareParameter(VCHAR);

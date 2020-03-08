@@ -15,8 +15,9 @@
                         "capacity" :  $!player.getLevel(),
                         "iconName" : "$!player.getIconName()",
                         "teamId"  : "$!player.getTeamId()",
-                        "description" : "$!player.getDescription()"
-                       
+                        "description" : "$!player.getDescription()",
+                        "planetId" : $!player.getPlanetId(),
+                        "signPoints" : "$!player.getSignPoints()"
                           
 		}	
 		#if ($velocityCount < $!players.size() - 1),#end

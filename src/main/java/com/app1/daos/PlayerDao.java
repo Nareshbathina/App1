@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
@@ -35,14 +36,14 @@ public class PlayerDao {
     private SqlParameter VCHAR = new SqlParameter(Types.VARCHAR);
 
     public List<Player> getAllPlayersByTeamId(String teamId) {
-        String key = "[getAllPlayersByTeamId]";
+        String key = "[getAllPlayersByTeamId2]";
         SelectPlayer sqlOp;
         if (this.selectPlayerCache.containsKey(key)) {
             sqlOp = this.selectPlayerCache.get(key);
         } else {
             List<SqlParameter> params = new ArrayList<SqlParameter>();
             params.add(VCHAR);
-            StringBuilder sql = new StringBuilder("SELECT * FROM Player Where TeamId = ? ");
+            StringBuilder sql = new StringBuilder("SELECT p.*,pp.PlanetId, concat(pp.Aries,',',pp.Tarus,',',pp.Gemini,',',pp.Cancer,',',pp.Leo,',',pp.Virgo,',',pp.Libra,',',pp.Scorpio,',',pp.Sagittarius,',',pp.Capricon,',',pp.Aquarius,',',pp.Pisces)  as signPoints FROM player p left outer join planetpoints pp on p.SunSign = pp.SignId Where TeamId = ? ");
 
             sqlOp = new SelectPlayer(sql.toString(), params);
             this.selectPlayerCache.put(key, sqlOp);
@@ -52,7 +53,8 @@ public class PlayerDao {
         List<Player> players = sqlOp.execute(vals.toArray());
         return players;
     }
-     public List<BrokerPlayer> getBrokerPlayerByPlayerId(String playerId) {
+
+    public List<BrokerPlayer> getBrokerPlayerByPlayerId(String playerId) {
         String key = "[getBrokerPlayerByPlayerId]";
         SelectBrokerPlayer sqlOp;
         if (this.selectBrokerPlayerCache.containsKey(key)) {
@@ -70,6 +72,34 @@ public class PlayerDao {
         List<BrokerPlayer> players = sqlOp.execute(vals.toArray());
         return players;
     }
+
+    public List<Player> getPlayerByPlayerIds(String[] playerIds) {
+        String key = "[getPlayerByPlayerId]" + playerIds.length;
+        SelectPlayer sqlOp;
+        if (this.selectPlayerCache.containsKey(key)) {
+            sqlOp = this.selectPlayerCache.get(key);
+        } else {
+            List<SqlParameter> params = new ArrayList<SqlParameter>();
+            params.add(VCHAR);
+            StringBuilder sql = new StringBuilder("SELECT p.*,pp.planetId FROM Player p left outer join planetpoints pp on p.SunSign = pp.SignId Where p.Id In ( ? ");
+            for (int i = 1; i < playerIds.length; i++) {
+                params.add(VCHAR);
+                sql.append(",?");
+            }
+            sql.append(" )");
+
+            sqlOp = new SelectPlayer(sql.toString(), params);
+            this.selectPlayerCache.put(key, sqlOp);
+        }
+        List<Object> vals = new ArrayList<Object>();
+        for (int i = 0; i < playerIds.length; i++) {
+            vals.add(playerIds[i]);
+        }
+
+        List<Player> players = sqlOp.execute(vals.toArray());
+        return players;
+    }
+
     public List<BrokerPlayer> getBrokerPlayersByTeamId(String teamId) {
         String key = "[getBrokerPlayersByTeamId]";
         SelectBrokerPlayer sqlOp;
@@ -117,6 +147,11 @@ public class PlayerDao {
             player.setSunSign(rs.getInt("SunSign"));
             player.setMoonSign(rs.getInt("MoonSign"));
             player.setLevel(rs.getInt("PlayerLevel"));
+            try {
+                player.setPlanetId(rs.getInt("PlanetId"));
+                player.setSignPoints(rs.getString("signPoints"));
+            } catch (Exception e) {
+            }
             return player;
         }
     }
