@@ -33,12 +33,15 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
         var teamSelector = mainTabPanel.query('#team1PlayerAnalysis')[0];
         var store = teamSelector.getStore();
         var index = store.find('id', playerId);
+        var record = null;
         if (index == -1) {
-            teamSelector = mainTabPanel.query('#team2PlayerAnalysis')[0];
-            index = store.find('id', playerId);
-            store = teamSelector.getStore();
+           var teamSelector2 = mainTabPanel.query('#team2PlayerAnalysis')[0];
+           var store2 = teamSelector2.getStore();
+           var idx = store2.find('id', playerId);
+           record = store2.getAt(idx);
+        }else{
+            record = store.getAt(index);
         }
-        var record = store.getAt(index);
         var data = record.data;
         var d = [];
         var planetDetails = Ext.ComponentQuery.query('#planetDetails')[0];
@@ -76,7 +79,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 var enimes = data.enimes;
                 var equal = data.equal;
                 var fIds = [], enIds = [], eqIds = [];
-                debugger
+              
                 Ext.each(friends, function (f) {
                     planetMap.each(function (key, value, length) {
                         if (f.id == value.toString()) {

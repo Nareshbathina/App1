@@ -6,8 +6,10 @@
 		#foreach( $!playerAstro in $!playerAstroData ){
                         "playerId" :  "$!playerAstro.getPlayerId()",
 			"planetId" : $!playerAstro.getPlanetId(),
-                         "planetName" :  "$!playerAstro.getPlanetName()",
+                        "planetName" :  "$!playerAstro.getPlanetName()",
                         "planetPosition" :  "$!playerAstro.getPlanetPosition()",
+                        "planetPositionName" :  "$!playerAstro.getPlanetPositionName()",
+                        "planetPositionLord" :  "$!playerAstro.getPlanetPositionLord()",
                         "hScopeResult" :  "$!playerAstro.gethScopeResult()",
                         "dayPoints" :  $!playerAstro.getDayPoints()
                      

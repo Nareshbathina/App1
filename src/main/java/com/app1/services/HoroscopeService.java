@@ -105,8 +105,8 @@ public class HoroscopeService {
             Horoscope hScope = this.getHorocopeForMatch(m);
             if (hScope != null) {
                 String team1Players = m.getTeam1PlayersInfo();
-                 String team2Players = m.getTeam2PlayersInfo();
-                String[] playerIds = (String []) ArrayUtils.addAll(team1Players.split(","), team2Players.split(",")); 
+                String team2Players = m.getTeam2PlayersInfo();
+                String[] playerIds = (String[]) ArrayUtils.addAll(team1Players.split(","), team2Players.split(","));
                 List<Player> players = this.playerService.getPlayerByPlayerIds(playerIds);
                 for (Player p : players) {
                     PlayerAstro playerAstro = new PlayerAstro();
@@ -114,7 +114,7 @@ public class HoroscopeService {
                     Graha planet = Graha.getById(p.getPlanetId());
                     playerAstro.setPlanetName(planet.getName());
                     this.setPlanetDetails(playerAstro, p, hScope);
-                    
+
                     playerAstro.setDayPoints(this.getPlanetPoint(p.getSunSign(), playerAstro.getPlanetPosition()));
 
                     playerAstroList.add(playerAstro);
@@ -148,50 +148,63 @@ public class HoroscopeService {
         return Float.parseFloat(points[playerSign - 1]);
     }
 
-    public void setPlanetDetails(PlayerAstro playerAstro, Player p,Horoscope hScope) {
-       playerAstro.setPlanetId(p.getPlanetId());
-       playerAstro.setSignId(p.getSunSign());            
+    public void setPlanetDetails(PlayerAstro playerAstro, Player p, Horoscope hScope) {
+        playerAstro.setPlanetId(p.getPlanetId());
+        playerAstro.setSignId(p.getSunSign());
+        int id = -1;
         if (p.getPlanetId() == 1) {
             playerAstro.setPlanetPosition(hScope.getSunPlace());
+            id = hScope.getSunPlace();
         } else if (p.getPlanetId() == 2) {
             playerAstro.setPlanetPosition(hScope.getMoonPlace());
+            id = hScope.getMoonPlace();
         } else if (p.getPlanetId() == 3) {//mars
             playerAstro.setPlanetPosition(hScope.getMarsPlace());
+            id = hScope.getMarsPlace();
         } else if (p.getPlanetId() == 4) {//mercu
             playerAstro.setPlanetPosition(hScope.getMercuryPlace());
+            id = hScope.getMercuryPlace();
         } else if (p.getPlanetId() == 5) {//jupi
             playerAstro.setPlanetPosition(hScope.getJupiterPlace());
+            id = hScope.getJupiterPlace();
         } else if (p.getPlanetId() == 6) {//venus
             playerAstro.setPlanetPosition(hScope.getVenusPlace());
+            id = hScope.getVenusPlace();
         } else if (p.getPlanetId() == 7) {//saturn
             playerAstro.setPlanetPosition(hScope.getSaturnPlace());
+            id = hScope.getSaturnPlace();
         }
+        Zsign sign = Zsign.getById(id);
+        // place where lord of player exists
+        playerAstro.setPlanetPositionName(sign.getDisplay());
+        Graha g= Graha.getById(sign.getGrahaId());
+        playerAstro.setPlanetPositionLord(g.getName());
         
-        if (p.getSunSign()== 1) {
+        if (p.getSunSign() == 1) {
             playerAstro.sethScopeResult(hScope.getAries());
-        } else  if (p.getSunSign()== 2) {
+        } else if (p.getSunSign() == 2) {
             playerAstro.sethScopeResult(hScope.getTarus());
-        }else  if (p.getSunSign()== 3) {
+        } else if (p.getSunSign() == 3) {
             playerAstro.sethScopeResult(hScope.getGemini());
-        }else  if (p.getSunSign()== 4) {
+        } else if (p.getSunSign() == 4) {
             playerAstro.sethScopeResult(hScope.getCancer());
-        }else  if (p.getSunSign()== 5) {
+        } else if (p.getSunSign() == 5) {
             playerAstro.sethScopeResult(hScope.getLeo());
-        }else  if (p.getSunSign()== 6) {
+        } else if (p.getSunSign() == 6) {
             playerAstro.sethScopeResult(hScope.getVirgo());
-        }else  if (p.getSunSign()== 7) {
+        } else if (p.getSunSign() == 7) {
             playerAstro.sethScopeResult(hScope.getLibra());
-        }else  if (p.getSunSign()== 8) {
+        } else if (p.getSunSign() == 8) {
             playerAstro.sethScopeResult(hScope.getScorpio());
-        }else  if (p.getSunSign()== 9) {
+        } else if (p.getSunSign() == 9) {
             playerAstro.sethScopeResult(hScope.getSagittarius());
-        }else  if (p.getSunSign()== 10) {
+        } else if (p.getSunSign() == 10) {
             playerAstro.sethScopeResult(hScope.getCapricorn());
-        }else  if (p.getSunSign()== 11) {
+        } else if (p.getSunSign() == 11) {
             playerAstro.sethScopeResult(hScope.getAquarius());
-        }else  if (p.getSunSign()== 12) {
+        } else if (p.getSunSign() == 12) {
             playerAstro.sethScopeResult(hScope.getPisces());
         }
-        
+
     }
 }

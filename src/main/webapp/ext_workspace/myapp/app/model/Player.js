@@ -1,20 +1,17 @@
 Ext.define('MyApp.model.Player', {
     extend: 'MyApp.model.Base',
-    fields: [{
-        name: 'teamId',
-        reference: 'MyApp.model.Team'
-    }, {
+    fields: [ {
         name: 'productCode'
     }, {
-        name: 'quantity',
-        type: 'number'
+        name: 'name',
+        type: 'string'
     }, {
         name: 'date',
         type: 'date',
         dateFormat: 'Y-m-d'
     }, {
-        name: 'shipped',
-        type: 'boolean'
+        name: 'dayPoints',
+        type: 'number'
     },{
         name : 'order',
         type : 'int'

@@ -15,6 +15,7 @@ Ext.define('MyApp.store.PlayerStore', {
         {name: 'sunsign', type: 'string'},
         {name: 'credits', type: 'float'},
         {name: 'points', type: 'float'},
+        {name: 'dayPoints', type: 'float'},
         {name: 'teamId', type: 'string'},
         {name: 'playerType', type: 'int'},
         {name: 'b1', type: 'int'},

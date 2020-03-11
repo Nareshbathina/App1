@@ -13,8 +13,10 @@ public class PlayerAstro {
 
     private String playerId;
     private int planetId;
-     private String planetName;
+    private String planetName;
     private int planetPosition;
+    private String planetPositionName;
+    private String planetPositionLord;
     private String planetPositionType;
     private int signId;
     private float dayPoints;
@@ -82,6 +84,22 @@ public class PlayerAstro {
 
     public void setPlanetName(String planetName) {
         this.planetName = planetName;
+    }
+
+    public String getPlanetPositionName() {
+        return planetPositionName;
+    }
+
+    public void setPlanetPositionName(String planetPositionName) {
+        this.planetPositionName = planetPositionName;
+    }
+
+    public String getPlanetPositionLord() {
+        return planetPositionLord;
+    }
+
+    public void setPlanetPositionLord(String planetPositionLord) {
+        this.planetPositionLord = planetPositionLord;
     }
     
     

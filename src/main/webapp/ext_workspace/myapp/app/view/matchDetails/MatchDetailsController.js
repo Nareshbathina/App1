@@ -62,23 +62,27 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                       record.set('order',t1Data.indexOf(record.get('id')));
                   }
                 });
-                team1Store.remove(recordsTobeRemoved);
+                
                 var t2Data = team2Data.split(',');
-                recordsTobeRemoved = [];
+                var recordsTobeRemoved2 = [];
                 team2Store.each(function (record,idx) {
                   if(t2Data.indexOf(record.get('id')) ==-1 ){
-                      recordsTobeRemoved.push(record);
+                      recordsTobeRemoved2.push(record);
                   }else{
+                      //batting order
                       record.set('order',t2Data.indexOf(record.get('id')));
                   }
                 });
-                team2Store.remove(recordsTobeRemoved);
+                team1Store.remove(recordsTobeRemoved);
+                team2Store.remove(recordsTobeRemoved2);
                 team1Store.sort('order','ASC');
                 team2Store.sort('order','ASC');
+                teamSelector1.getView().refresh();
+                teamSelector2.getView().refresh();
             }
             me.addTabsForPlayer();
             
-        }, 800, view);
+        }, 1000, view);
 
     },
     onSingCheckChange: function (field, nVal) {
@@ -122,7 +126,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
            tabPanel.add({
                 xtype: 'playerAnalysisPanel',
                 manual: true,
-                 playerId: record.get('id'),
+                playerId: record.get('id'),
                 title: record.get('sName')
                
             });
@@ -163,9 +167,13 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                    var idx = store1.find("id",d.playerId);
                    if(idx!=-1){
                        var rec = store1.getAt(idx);
-                       rec.set('planetName',d.planetName);
-                       rec.set('hScopeResult',d.hScopeResult);
-                       rec.set('dayPoints',d.dayPoints);
+                      rec.set('planetName',d.planetName);
+                            rec.set('hScopeResult',d.hScopeResult);
+                            rec.set('planetPositionName',d.planetPositionName);
+                             rec.set('planetPositionLord',d.planetPositionLord);
+                            rec.set('dayPoints',d.dayPoints);
+                            
+                            
                        rec.commit();
                     }else{
                         idx = store2.find("id",d.playerId);
@@ -173,6 +181,8 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                             var rec = store2.getAt(idx);
                             rec.set('planetName',d.planetName);
                             rec.set('hScopeResult',d.hScopeResult);
+                            rec.set('planetPositionName',d.planetPositionName);
+                             rec.set('planetPositionLord',d.planetPositionLord);
                             rec.set('dayPoints',d.dayPoints);
                             rec.commit();
                          }
@@ -187,5 +197,8 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
         }); 
         }
       
+    },
+    onSuggestTeams : function(){
+        
     }
 });

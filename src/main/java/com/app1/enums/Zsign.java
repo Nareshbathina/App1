@@ -15,7 +15,7 @@ public enum Zsign {
     LIBRA(7, "libra", "Libra",6,"4,7,10,5,7,6,2,6,7,4,9,6"),
     SCORPIO(8, "scorpio", "Scorpio",3,"6,6,4,8,4,7,6,2,4,7,3,10"),
     SAGITTARIUS(9, "sagittarius", "Sagittarius",5,"9,3,7,4,10,5,7,4,3,5,8,4"),
-    CAPRICON(10, "capricorn", "Capricorn",7,"6,9,4,8,5,9,4,7,5,6,7,2"),
+    CAPRICON(10, "capricon", "Capricon",7,"6,9,4,8,5,9,4,7,5,6,7,2"),
     AQUARIUS(11, "aquarius", "Aquarius",7,"6,3,9,4,7,7,9,3,8,7,5,4"),
     PISCES(12, "pisces", "Pisces",5,"4,7,6,10,6,4,6,10,4,2,4,3");
     
