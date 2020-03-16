@@ -9,6 +9,7 @@
                         "planetName" :  "$!playerAstro.getPlanetName()",
                         "planetPosition" :  "$!playerAstro.getPlanetPosition()",
                         "planetPositionName" :  "$!playerAstro.getPlanetPositionName()",
+                        "planetPositionType" :  "$!playerAstro.getPlanetPositionType()",
                         "planetPositionLord" :  "$!playerAstro.getPlanetPositionLord()",
                         "hScopeResult" :  "$!playerAstro.gethScopeResult()",
                         "dayPoints" :  $!playerAstro.getDayPoints()

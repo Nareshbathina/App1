@@ -66,7 +66,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
             layout: 'column',
             title: 'Teams',
             collapsible: true,
-            columnWidth: .6,
+            columnWidth: .7,
             defaults: {
                 margin: '5px',
                 hideHeaders: true
@@ -85,7 +85,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                         {text: 'Id', dataIndex: 'id', hidden: true},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
                             tpl: '<div><img src="images/avatar/avatar1.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{sName}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}"style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
-                        {xtype: 'templatecolumn', text: 'Name', flex: 1,tpl: '{planetName} at {planetPositionName} ({planetPositionLord}) - {hScopeResult}'},
+                        {xtype: 'templatecolumn', text: 'Name', flex: 1,tpl: '{planetName} at {planetPositionName} ({planetPositionLord}-{planetPositionType}) - {hScopeResult}'},
                         {text: 'dayPoints',width:40, dataIndex: 'dayPoints', sortable: true,summaryType: 'sum'},
                     ]
                 }, {
@@ -103,7 +103,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
                             tpl: '<div><img src="images/avatar/avatar2.png" title="{name}" style="width: 20px;"><span style="position: absolute;">{sName}</span><span style="float: right;"><img src="images/zodiac/{sunsign}.jpg" title="{sunsign}" style="width: 22px;"></span><span style="float: right;color: red;margin-right:5px">L - {capacity}</span><span style="float: right;"><img src="images/cricket/{typeImg}" style="width: 22px;"> </div>'},
                         {xtype: 'templatecolumn', text: 'Name', flex: 1,
-                            tpl: '{planetName} at {planetPositionName}({planetPositionLord}) - {hScopeResult}'},
+                            tpl: '{planetName} at {planetPositionName}({planetPositionLord}-{planetPositionType}) - {hScopeResult}'},
                         {text: 'dayPoints', width:40, dataIndex: 'dayPoints', sortable: true,summaryType: 'sum'},
                     ]
                 }],
@@ -175,7 +175,7 @@ Ext.define("MyApp.view.matchDetails.AnalysisPanel", {
                 collapsible: true,
 
             },
-            columnWidth: .4,
+            columnWidth: .3,
             items: [{
                     title: 'Aries',
                     signId: 1

@@ -171,6 +171,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                             rec.set('hScopeResult',d.hScopeResult);
                             rec.set('planetPositionName',d.planetPositionName);
                              rec.set('planetPositionLord',d.planetPositionLord);
+                               rec.set('planetPositionType',d.planetPositionType); 
                             rec.set('dayPoints',d.dayPoints);
                             
                             
@@ -183,6 +184,7 @@ Ext.define('MyApp.view.matchDetails.MatchDetailsController', {
                             rec.set('hScopeResult',d.hScopeResult);
                             rec.set('planetPositionName',d.planetPositionName);
                              rec.set('planetPositionLord',d.planetPositionLord);
+                            rec.set('planetPositionType',d.planetPositionType); 
                             rec.set('dayPoints',d.dayPoints);
                             rec.commit();
                          }

@@ -43,6 +43,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
             record = store.getAt(index);
         }
         var data = record.data;
+        var signPoints = data.signPoints;
         var d = [];
         var planetDetails = Ext.ComponentQuery.query('#planetDetails')[0];
         var planetInfoGrid = planetDetails.query('grid')[0];
@@ -57,12 +58,13 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
 
 
 
-        this.loadGrids(data.sunsignId);
+        this.loadGrids(data.sunsignId,signPoints);
 
 
     },
-    loadGrids: function (signId) {
+    loadGrids: function (signId,signPoints) {
         var view = this.getView();
+        var playerSignPoints = signPoints.split(',');
         var planetMap = this.getPlanetInfoMap();
         var friendsGrid = view.down('#friendsGrid');
         var enimiesGrid = view.down('#enimiesGrid');
@@ -109,6 +111,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 var teamSelector = mainTabPanel.query('#team1PlayerAnalysis')[0];
                 var store = teamSelector.getStore();
                 store.each(function (record) {
+                    record.set('fpoints',playerSignPoints[record.get('sunsignId')-1]);
                     if (fIds.indexOf(record.get('sunsign')) > -1) {
                         friendRecords.push(record.data);
                     }else if (enIds.indexOf(record.get('sunsign')) > -1) {
@@ -124,6 +127,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                 teamSelector = mainTabPanel.query('#team2PlayerAnalysis')[0];
                 store = teamSelector.getStore();
                 store.each(function (record) {
+                    record.set('fpoints',playerSignPoints[record.get('sunsignId')-1]);
                      if (fIds.indexOf(record.get('sunsign')) > -1) {
                         friendRecords.push(record.data);
                     }else if (enIds.indexOf(record.get('sunsign')) > -1) {
@@ -136,6 +140,7 @@ Ext.define('MyApp.view.matchDetails.PlayerAnalysisPanelController', {
                         otherRecords.push(record.data);
                     }
                 });
+              
                 friendsGrid.getStore().loadData(friendRecords);
                 enimiesGrid.getStore().loadData(enemyRecords);
                 equalGrid.getStore().loadData(equalRecords);
