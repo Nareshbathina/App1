@@ -12,7 +12,7 @@ Ext.define('MyApp.view.main.Main', {
     requires: [
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox',
-
+        'MyApp.view.main.MiscellaneousPanel',
         'MyApp.view.main.MainController',
         'MyApp.view.main.MainModel',
         'MyApp.view.main.List',
@@ -72,7 +72,7 @@ Ext.define('MyApp.view.main.Main', {
             iconCls: 'fa-home',
             // The following grid shares a store with the classic version's grid as well!
             items: [{
-                    xtype: 'mainlist'
+                    xtype: 'miscellaneousPanel'
                 }]
         }, {
             title: 'Leagues',
